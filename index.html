@@ -2,71 +2,75 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Territorios</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grupo Chino Laferrere</title>
 
   <style>
     body {
-      margin: 0;
-      padding: 10px;
-      background-color: black;
-      color: white;
-      font-family: Arial, Helvetica, sans-serif;
+      background-color: #333441;
       text-align: center;
+      margin: 20px;
+      font-family: Arial, sans-serif;
     }
 
-    h1 {
-      margin-bottom: 10px;
+    button {
+      border-radius: 25px;
+      background-color: #F0EFEB;
+      font-size: 16px;
+      width: 130px;
+      height: 40px;
+      cursor: pointer;
     }
 
-    #elegir {
-      margin-bottom: 15px;
+    p, h1, h2 {
+      color: white;
+    }
+
+    #myFrame, #terris {
+      border-radius: 25px;
     }
 
     select {
-      width: 95%;
-      max-width: 400px;
-      padding: 8px;
-      font-size: 16px;
-      border-radius: 10px;
-    }
-
-    iframe {
-      width: 95vw;
-      height: 70vh;
-      border: none;
-      border-radius: 25px;
-      background-color: white;
+      font-size: 22px;
+      background-color: #F0EFEB;
     }
   </style>
-
-  <script>
-    function FSelecTerri() {
-      var selector = document.getElementById("terris");
-      var frame = document.getElementById("myFrame");
-      frame.src = selector.value;
-    }
-  </script>
 </head>
 
 <body>
 
-  <h1>Territorios</h1>
+  <h1>GRUPO CHINO LAFERRERE</h1>
 
-  <div id="elegir">
-    <label for="terris">Elegí el territorio:</label><br><br>
-    <select id="terris" onchange="FSelecTerri()">
-      <option value="https://www.google.com/maps/d/u/1/embed?mid=1ZyM6JpZudv6A9DqgPpJQK3nF4R4Jp0k">Territorio 1</option>
-      <option value="https://www.google.com/maps/d/u/1/embed?mid=1xgI0W8bq4z6N3k4xQvJ3MZpYpJ9M">Territorio 2</option>
-      <option value="https://www.google.com/maps/d/u/1/embed?mid=1A2B3C4D5E6F7G8H9I0J">Territorio 3</option>
-      <!-- seguí agregando territorios acá -->
-    </select>
-  </div>
+  <h2>Seleccione un territorio:</h2>
+
+  <select id="terris">
+    <option value="https://www.google.com/maps/d/u/1/embed?mid=1D0jU30isYPQNpGHVlpaM8VfJR9FRNNuT">1 al 3 Ciudadela</option>
+    <option value="https://www.google.com/maps/d/u/1/embed?mid=1nzcK-uB5nohxDrUuVUzK5qODD6Fcg4uI">4 al 10 Lomas del Mirador</option>
+    <option value="https://www.google.com/maps/d/u/1/embed?mid=1ainJ1oAw80k1ejPKfnawvifX89pmb_gc">11 al 16 La Tablada</option>
+    <option value="https://www.google.com/maps/d/u/1/embed?mid=1Ub9KGCwYrdGILeH3Ve-OOMuM0_h-ZJ5K">17 al 21 Villa Madero</option>
+    <option value="https://www.google.com/maps/d/u/1/embed?mid=1Lma9R8kbNBhNEfemQGkM6pGq1NQFyZVl">Límites del Territorio</option>
+  </select>
+
+  <br><br>
+  <button onclick="FSelecTerri()">Elegir</button>
+
+  <br><br>
 
   <iframe
     id="myFrame"
-    src="https://www.google.com/maps/d/u/1/embed?mid=1ZyM6JpZudv6A9DqgPpJQK3nF4R4Jp0k">
+    src="https://www.google.com/maps/d/u/1/embed?mid=1Lma9R8kbNBhNEfemQGkM6pGq1NQFyZVl"
+    width="90%"
+    height="700">
   </iframe>
+
+  <p>- ESTE ARCHIVO NO ES PARA DISTRIBUCIÓN MASIVA -</p>
+
+  <script>
+    function FSelecTerri() {
+      var select = document.getElementById("terris");
+      var frame = document.getElementById("myFrame");
+      frame.src = select.value;
+    }
+  </script>
 
 </body>
 </html>
