@@ -4,8 +4,14 @@
 <title>Grupo Chino San Justo</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<style>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#333441">
+<style> 
+  <script>
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("sw.js");
+}
+</script>
 body {
   background-color: #333441;
   margin: 0;
