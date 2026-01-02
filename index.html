@@ -41,3 +41,32 @@
   </style>
 
   <script>
+    function FSelecTerri() {
+      var selector = document.getElementById("terris");
+      var frame = document.getElementById("myFrame");
+      frame.src = selector.value;
+    }
+  </script>
+</head>
+
+<body>
+
+  <h1>Territorios</h1>
+
+  <div id="elegir">
+    <label for="terris">Elegí el territorio:</label><br><br>
+    <select id="terris" onchange="FSelecTerri()">
+      <option value="https://www.google.com/maps/d/u/1/embed?mid=1ZyM6JpZudv6A9DqgPpJQK3nF4R4Jp0k">Territorio 1</option>
+      <option value="https://www.google.com/maps/d/u/1/embed?mid=1xgI0W8bq4z6N3k4xQvJ3MZpYpJ9M">Territorio 2</option>
+      <option value="https://www.google.com/maps/d/u/1/embed?mid=1A2B3C4D5E6F7G8H9I0J">Territorio 3</option>
+      <!-- seguí agregando territorios acá -->
+    </select>
+  </div>
+
+  <iframe
+    id="myFrame"
+    src="https://www.google.com/maps/d/u/1/embed?mid=1ZyM6JpZudv6A9DqgPpJQK3nF4R4Jp0k">
+  </iframe>
+
+</body>
+</html>
