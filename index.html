@@ -1,76 +1,202 @@
 <!DOCTYPE html>
-<html lang="es">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>Grupo Chino Laferrere</title>
+<title>Grupo Chino San Justo</title>
 
-  <style>
-    body {
-      background-color: #333441;
-      text-align: center;
-      margin: 20px;
-      font-family: Arial, sans-serif;
-    }
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    button {
-      border-radius: 25px;
-      background-color: #F0EFEB;
-      font-size: 16px;
-      width: 130px;
-      height: 40px;
-      cursor: pointer;
-    }
+<style>
+body {
+  background-color: #333441;
+  margin: 0;
+  padding: 10px;
+  font-family: Arial, sans-serif;
+}
 
-    p, h1, h2 {
-      color: white;
-    }
+h1, h2, p {
+  color: white;
+  text-align: center;
+}
 
-    #myFrame, #terris {
-      border-radius: 25px;
-    }
+select, button {
+  font-size: 18px;
+  border-radius: 20px;
+  padding: 8px 14px;
+  margin: 5px;
+}
 
-    select {
-      font-size: 22px;
-      background-color: #F0EFEB;
-    }
-  </style>
+button {
+  background-color: #F0EFEB;
+  cursor: pointer;
+}
+
+#controls {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+#maps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 12px;
+}
+
+.map-box {
+  background: #222;
+  border-radius: 20px;
+  padding: 6px;
+  position: relative;
+}
+
+.map-title {
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  padding: 6px;
+  cursor: pointer;
+}
+
+.map-box iframe {
+  width: 100%;
+  height: 320px;
+  border: none;
+  border-radius: 16px;
+}
+
+.remove-btn {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  background: #c0392b;
+  color: white;
+  border: none;
+  border-radius: 14px;
+  padding: 4px 10px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.fullscreen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: #000;
+  padding: 10px;
+}
+
+.fullscreen iframe {
+  height: calc(100vh - 60px);
+}
+</style>
 </head>
 
 <body>
 
-  <h1>GRUPO CHINO LAFERRERE</h1>
+<h1>GRUPO CHINO SAN JUSTO</h1>
 
-  <h2>Seleccione un territorio:</h2>
+<div id="controls">
+  <h2>Seleccione un territorio</h2>
 
   <select id="terris">
     <option value="https://www.google.com/maps/d/u/1/embed?mid=1D0jU30isYPQNpGHVlpaM8VfJR9FRNNuT">1 al 3 Ciudadela</option>
     <option value="https://www.google.com/maps/d/u/1/embed?mid=1nzcK-uB5nohxDrUuVUzK5qODD6Fcg4uI">4 al 10 Lomas del Mirador</option>
     <option value="https://www.google.com/maps/d/u/1/embed?mid=1ainJ1oAw80k1ejPKfnawvifX89pmb_gc">11 al 16 La Tablada</option>
     <option value="https://www.google.com/maps/d/u/1/embed?mid=1Ub9KGCwYrdGILeH3Ve-OOMuM0_h-ZJ5K">17 al 21 Villa Madero</option>
-    <option value="https://www.google.com/maps/d/u/1/embed?mid=1Lma9R8kbNBhNEfemQGkM6pGq1NQFyZVl">Límites del Territorio</option>
+    <option value="https://www.google.com/maps/d/u/1/embed?mid=1_NcM50gjq8zefht4PPmMX9n7pCqYfbJ-">22 Tapiales</option>
+    <option value="https://www.google.com/maps/d/u/1/embed?mid=1MZjyaHBr8lYUVdOB0OaoyPQXqer3dX_p">23 Aldo Bonzi</option>
+    <option value="https://www.google.com/maps/d/u/1/embed?mid=1q2X0Hjqr5jqkvgqxwdDTi1d7asfR_nnC">24 al 28 San Justo</option>
+    <option value="https://www.google.com/maps/d/u/1/embed?mid=1NXREKqqRvGEuDlftdpnJRIhWTI83tZiE">29 al 34 San Justo</option>
+    <option value="https://www.google.com/maps/d/u/1/embed?mid=1U-3EZpBc8USbCUQUk8VK1-6hLPX6EJks">35 al 40 Ramos Mejia</option>
+    <option value="https://www.google.com/maps/d/u/1/embed?mid=1Zv1eAP0mhkY3Tkf55uh39elm6hOW_TCC">41 al 46 Ramos Mejia</option>
+    <option value="https://www.google.com/maps/d/u/1/embed?mid=1xpQ8PHNfa4nxKvx4vHCmQ26uInPnj-Hx">47 al 48 Villa Sarmiento</option>
+    <option value="https://www.google.com/maps/d/u/1/embed?mid=1MLyirKS4rIXZ6Y43qo09ywsHSyh-xs6y">49 al 51 Haedo</option>
+    <option value="https://www.google.com/maps/d/u/1/embed?mid=12uPDhidVjoY90x3_XUGVUT6ZTy8jP1r7">52 al 54 Palomar</option>
+    <option value="https://www.google.com/maps/d/u/1/embed?mid=1tzlAtFAOflv9FWLwx-xtV1P10A5Txuyr">55 al 61 Villa Luzuriaga</option>
+    <option value="https://www.google.com/maps/d/u/1/embed?mid=1ueN7a_mleC7jxK3e6o5lMgCHGBmma3Cz">62 al 70 Isidro Casanova</option>
+    <option value="https://www.google.com/maps/d/u/1/embed?mid=159NA9cZ9UeScR6sav_A_yrIm3zSDnOyf">71 Ciudad Evita</option>
+    <option value="https://www.google.com/maps/d/u/1/embed?mid=1Ok-KCSXZDHeMK_2Ay3dfrsv_1r-KKKJs">72 al 79 Laferrere</option>
+    <option value="https://www.google.com/maps/d/u/1/embed?mid=1pGtHn_n0f-oWJIi6Ow1RMiu1_1P5lOSm">80 al 82 Laferrere</option>
+    <option value="https://www.google.com/maps/d/u/1/embed?mid=1pNgJpYNYDzH4UuORkxgweJ8fMb-Y4WrG">83 al 88 Rafael Castillo</option>
+    <option value="https://www.google.com/maps/d/u/1/embed?mid=1yI5zna3COHrXjHAONRzyR5S-0h5acdrR">89 al 97 Moron</option>
+    <option value="https://www.google.com/maps/d/u/1/embed?mid=1AqV1OMGWUHi2iUahYp3wpXoaBP8XkvR9">98 al 101 Villa Tesei</option>
+    <option value="https://www.google.com/maps/d/u/1/embed?mid=1KoEbKqAbDhz9090MBqONL2JVblBVC_FB">111 al 113 Villa Udaondo</option>
+    <option value="https://www.google.com/maps/d/u/1/embed?mid=1XTAHAzuZZnPlCQ0DhDHnyA1sp85P_Ef_">114 al 117 Castelar</option>
+    <option value="https://www.google.com/maps/d/u/1/embed?mid=1lUJ5Vimb_rwNDh7FFV5kXNP_pr1mtuIa">118 Merlo Gomez</option>
+    <option value="https://www.google.com/maps/d/u/1/embed?mid=1ycUlFkit0Gos20Ro_4y3L2oBDddAb1rU">119 al 128 Ituzaingo</option>
+    <option value="https://www.google.com/maps/d/u/1/embed?mid=1iOmmZ0D_AyZiW9yFRuIbI0slUIhVdVR4">129 al 130 San Antonio de Padua</option>
+    <option value="https://www.google.com/maps/d/u/1/embed?mid=1ABV-KXU9xOjk3lRRxZWtyt1akbU298ks">131 Libertad</option>
+    <option value="https://www.google.com/maps/d/u/1/embed?mid=14Aq-R0Wht-Q-QHrrh9w8MBN94Fb9nL4P">132 Pontevedra</option>
+    <option value="https://www.google.com/maps/d/u/1/embed?mid=1CKNGgBzTli1-ejLQD_WJpxWXIGNAyr27">133 al 140 Gonzalez Catan</option>
+    <option value="https://www.google.com/maps/d/u/1/embed?mid=1X9cu7IYabH_25m_g3Q34ayBthH1B6Q0I">141 al 143 Virrey del Pino</option>
+    <option value="https://www.google.com/maps/d/u/1/embed?mid=18zt1m3HekUmVJM6X84FDlonBgDMKMzsu">144 al 147 Merlo</option>
+    <option value="https://www.google.com/maps/d/u/1/embed?mid=10_MfD-xvRLCQWjWobw268YTW-M7msL1J">148 Parque San Martin</option>
+    <option value="https://www.google.com/maps/d/u/1/embed?mid=1i4TNDTUAtwaX6X2ThgFwTY7JMBTTwLsd">151 al 153 Paso del Rey</option>
+    <option value="https://www.google.com/maps/d/u/1/embed?mid=16TZw-969JEtOyIlGAG4GZTSBJ_j0XxC6">154 al 160 Moreno</option>
+    <option value="https://www.google.com/maps/d/u/1/embed?mid=1riB4j2lRauztaSgeLxlLhgdVTCm89XGo">161 al 162 Trujui</option>
+    <option value="https://www.google.com/maps/d/u/1/embed?mid=1WM0j1PJyqkEZv_9aLoVmjXEGcaJJhQuC">163 Cuartel V</option>
+    <option value="https://www.google.com/maps/d/u/1/embed?mid=1F0Qjkt-lw7mYqEjFVthI-2GmvxvaxIhq">164 al 165 La Reja</option>
+    <option value="https://www.google.com/maps/d/u/1/embed?mid=1V-NCzyeRreFN7b81y0yu9D8pe-l1RgW3">166 Francisco Alvarez</option>
+    <option value="https://www.google.com/maps/d/u/1/embed?mid=1lC7T3rqepqCKSvvp0pyGNcpVcT2U8Xx7">167 al 168 General Rodriguez</option>
+    <option value="https://www.google.com/maps/d/u/1/embed?mid=1Lma9R8kbNBhNEfemQGkM6pGq1NQFyZVl">Limites del Territorio</option>
+    <option value="https://www.google.com/maps/d/u/1/embed?mid=1IeTQz44EsfPI3woClhP9UzGxOgePJDTC">Publicadores del Grupo</option>
   </select>
 
-  <br><br>
-  <button onclick="FSelecTerri()">Elegir</button>
+  <button onclick="addMap()">Agregar</button>
+</div>
 
-  <br><br>
+<div id="maps"></div>
 
-  <iframe
-    id="myFrame"
-    src="https://www.google.com/maps/d/u/1/embed?mid=1Lma9R8kbNBhNEfemQGkM6pGq1NQFyZVl"
-    width="90%"
-    height="700">
-  </iframe>
+<p>- ESTE ARCHIVO NO ES PARA DISTRIBUCION MASIVA -</p>
 
-  <p>- ESTE ARCHIVO NO ES PARA DISTRIBUCIÓN MASIVA -</p>
+<script>
+const mapsDiv = document.getElementById("maps");
 
-  <script>
-    function FSelecTerri() {
-      var select = document.getElementById("terris");
-      var frame = document.getElementById("myFrame");
-      frame.src = select.value;
-    }
-  </script>
+function saveState() {
+  localStorage.setItem("maps", mapsDiv.innerHTML);
+}
+
+function attachEvents() {
+  document.querySelectorAll(".map-box").forEach(box => {
+    box.querySelector(".remove-btn").onclick = () => {
+      box.remove();
+      saveState();
+    };
+
+    box.querySelector(".map-title").onclick = () => {
+      box.classList.toggle("fullscreen");
+    };
+  });
+}
+
+function loadState() {
+  const data = localStorage.getItem("maps");
+  if (data) {
+    mapsDiv.innerHTML = data;
+    attachEvents();
+  }
+}
+
+function addMap() {
+  const select = document.getElementById("terris");
+  const url = select.value;
+  const title = select.options[select.selectedIndex].text;
+
+  const box = document.createElement("div");
+  box.className = "map-box";
+
+  box.innerHTML = `
+    <div class="map-title">${title}</div>
+    <button class="remove-btn">Quitar</button>
+    <iframe src="${url}"></iframe>
+  `;
+
+  mapsDiv.appendChild(box);
+  attachEvents();
+  saveState();
+}
+
+loadState();
+</script>
 
 </body>
 </html>
